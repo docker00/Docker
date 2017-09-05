@@ -20,7 +20,7 @@ namespace Host
 {
     public class Startup
     {
-        public static string ConnectionString = "Server=mysql;Database=identityserver4_release;Uid=root;Pwd=qwe123!@#;Port=3306";
+        public static string ConnectionString = "Server=mysql;Database=identityserver4_release;Uid=root;Pwd=qwe123qwe;Port=3306";
         public IConfigurationRoot Configuration { get; }
 
         public Startup(ILoggerFactory loggerFactory, IHostingEnvironment environment)
