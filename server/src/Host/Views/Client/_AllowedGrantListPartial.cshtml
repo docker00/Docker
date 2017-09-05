@@ -1,0 +1,52 @@
+﻿@model IEnumerable<AllowedGrantTypeViewModel>
+
+@{
+    string clientId = ViewBag.ClientId;
+}
+
+<div class="panel panel-default" id="allowedGrants">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a href="#allowedGrants_collapse" data-toggle="collapse"><span class="glyphicon glyphicon-plus" style="float:left;"></span>&nbsp;Способы взаимодействовия с IdentityServer</a>
+        </div>
+    </div>
+    <div id="allowedGrants_collapse" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table table-bordered table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;">Способ взаимодействия</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count() > 0)
+                        {
+                            foreach (AllowedGrantTypeViewModel grant in Model)
+                            {
+                                <tr>
+                                    <td align="center">@grant.Name</td>
+                                    <td align="center">
+                                        <a href="/Client/DeleteGrantType/?clientId=@clientId&allowedGrantTypeId=@grant.Id" class="glyphicon glyphicon-remove" title="Удалить у клиента"></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="2" align="center">Нет записей</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <a href="/Client/_AddGrantTypePartial/?clientId=@clientId" class="btn btn-default" id="grantAddBtn"
+                   data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#grantAddBtn">
+                    Добавить&nbsp;<span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+    </div>
+</div>
+

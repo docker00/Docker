@@ -1,0 +1,32 @@
+﻿@{
+    string groupId = ViewBag.GroupId;
+}
+
+<div id="roleList_toolbar_@groupId">
+    <button class="btn btn-default" name="RoleSelectBtns" value="@groupId">Добавить роль</button>
+</div>
+<table id="groupRoleList_@groupId"
+       data-url="/Role/Data/?groupId=@groupId&inGroup=true"
+       data-toggle="table"
+       data-show-refresh="true"
+       data-show-toggle="true"
+       data-method="get"
+       data-detail-view="false"
+       data-toolbar="#roleList_toolbar_@groupId"
+       data-show-columns="true"
+       data-pagination="true"
+       data-side-pagination="server"
+       data-page-size="10"
+       data-page-list="[5, 10, 20, 50, 100, 200]"
+       data-search="true">
+    <thead>
+        <tr>
+            <th data-field="name" data-align="center" data-visible="true" data-sortable="true">
+                Название
+            </th>
+            <th data-field="actions" data-formatter="usersListActionFormatter" data-events="groupRoleListOperateEvents" data-align="center" data-visible="true" data-sortable="false">
+                Действия
+            </th>
+        </tr>
+    </thead>
+</table>

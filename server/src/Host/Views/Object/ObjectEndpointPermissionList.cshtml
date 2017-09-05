@@ -1,0 +1,59 @@
+﻿@model List<PermissionViewModel>
+@using MySql.AspNet.Identity;
+@{
+    string title = "Выбор разрешений для роли";
+    List<Permission> permissions = ViewBag.PermissionsByObjectEndpoint as List<Permission>;
+}
+
+<h2>@title.</h2>
+
+
+@using (Html.BeginForm("ObjectEndpointPermissionList", "Object", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-10 col-sm-10 external-providers">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@title</h3>
+                </div>
+                <input type="hidden" name="ObjectEndpointId" value="@ViewData["ObjectEndpointId"]" />
+                <div class="panel-body">
+                    <ul class="list-group">
+                        @{
+                            string checked_ = "";
+                        }
+                        @if (Model != null && Model.Count > 0)
+                        {
+                            @foreach (PermissionViewModel permission in Model)
+                            {
+                                checked_ = "";
+                                <li class="list-group-item">
+                                    @foreach (Permission permissionsByRole in permissions)
+                                    {
+                                        if (permission.Id.Equals(permissionsByRole.Id))
+                                        {
+                                            checked_ = "checked";
+                                        }
+                                    }
+                                    <label><input type="checkbox" value="@permission.Id" name="SelectedPermissions" @checked_></label>&nbsp;
+                                    <b>@permission.Name</b>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li>Список пуст.</li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-default">Сохранить</button>
+    <a href="/Object/ObjectEndpointList?objectId=@ViewData["ObjectId"]" class="btn btn-default" role="button">Отмена</a>
+                            }
+
+@section Scripts{
+    <script src="~/project/object_scripts.js"></script>
+}

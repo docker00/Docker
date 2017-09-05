@@ -1,0 +1,48 @@
+﻿@model List<ControllerViewModel>
+
+@{
+    List<GroupViewModel> groups = ViewBag.Groups;
+    string roleId = ViewBag.RoleId;
+    string roleLocalPartitionData = ViewBag.RoleLocalPartitionData;
+}
+
+<div class="panel panel-default" id="resourceRoleLocalPartitions">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a href="#resourceRoleLocalPartitions_collapse" data-toggle="collapse"><span class="glyphicon glyphicon-plus" style="float:left;"></span>&nbsp;Список доступных разделов подсистемы</a>
+        </div>
+    </div>
+    <div id="resourceRoleLocalPartitions_collapse" class="panel-collapse collapse roleDetails">
+        <input type="hidden" id="TableData" value="@roleLocalPartitionData" />
+        <input type="hidden" name="RoleId" id="RoleId" value="@ViewData["roleId"]" />
+        <div class="panel-body">
+            <table id="role_local_partitions_data_table"
+                   data-url=""
+                   data-toggle="table"
+                   data-show-refresh="true"
+                   data-show-toggle="true"
+                   data-method="get"
+                   data-height="500"
+                   data-detail-view="true"
+                   data-show-columns="true"
+                   data-pagination="true"
+                   data-side-pagination="client"
+                   data-page-size="10"
+                   data-checkbox-header="false"
+                   data-page-list="[5, 10, 20, 50, 100, 200]"
+                   data-search="true">
+                <thead>
+                    <tr>
+                        <th data-field="CheckAll" data-checkbox="true" data-align="center" data-visible="true" data-sortable="false" data-formatter="stateCheckedFormatter"></th>
+                        <th data-field="name" data-align="center" data-visible="true" data-sortable="true">
+                            Название
+                        </th>
+                        <th data-field="description" data-align="center" data-visible="true" data-sortable="true">
+                            Описание
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>

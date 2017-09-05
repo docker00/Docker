@@ -1,0 +1,87 @@
+﻿@model IdentityResourceInputModel
+
+@{
+    ViewData["Title"] = "Добавление ресурса";
+}
+
+<h4><a href="/IdentityResource/List">Список ресурсов</a></h4>
+<hr />
+<h3 class="page-header">@ViewData["Title"]</h3>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Основная информация
+        </h3>
+    </div>
+    <form asp-controller="IdentityResource" asp-action="Add" class="form-horizontal">
+        <div class="panel-body">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="DisplayName" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="DisplayName" class="form-control" />
+                    <span asp-validation-for="DisplayName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Required" class="col-md-2 control-label"></label>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="Required" />
+                        <span asp-validation-for="Required" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Emphasize" class="col-md-2 control-label"></label>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="Emphasize" />
+                        <span asp-validation-for="Emphasize" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShowInDiscoveryDocument" class="col-md-3 control-label"></label>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="ShowInDiscoveryDocument" />
+                        <span asp-validation-for="ShowInDiscoveryDocument" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enabled" class="col-md-2 control-label"></label>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="Enabled" />
+                        <span asp-validation-for="Enabled" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-success">Добавить&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+            <a href="/IdentityResource/List" class="btn btn-default" style="float:right">
+                Отмена&nbsp;<span class="glyphicon glyphicon-ban-circle"></span>
+            </a>
+        </div>
+    </form>
+</div>

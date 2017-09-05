@@ -1,0 +1,20 @@
+﻿@model ClientAllowedScopeInputModel
+
+@{
+    List<string> scopes = ViewBag.Scopes;
+}
+
+<form asp-controller="Client" asp-action="_AddScopePartial" method="post" class="form-inline">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ClientId" />
+    <select class="form-control action-param" asp-for="ScopeName">
+        <option></option>
+        @foreach (string scope in scopes)
+        {
+            <option value="@scope">@scope</option>
+        }
+    </select>
+    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span></button>
+    <span asp-validation-for="ScopeName" class="text-danger"></span>
+</form>

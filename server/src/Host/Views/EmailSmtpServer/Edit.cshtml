@@ -1,0 +1,141 @@
+﻿@model EmailSmtpServerInputModel
+@using MySql.AspNet.Identity;
+@{
+    ViewData["Title"] = "Редактирование";
+}
+
+<h4><a href="/EmailSmtpServer/List">Список</a></h4>
+<hr />
+<h3 class="page-header">@ViewData["Title"]</h3>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Основная информация
+        </h3>
+    </div>
+
+    <form asp-controller="EmailSmtpServer" asp-action="Edit" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+        <div class="panel-body">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Id" type="hidden" class="form-control" />
+                <label asp-for="SmtpAdress" class="col-md-2 control-label"></label>
+                <div class="col-md-4">
+                    <input asp-for="SmtpAdress" class="form-control" />
+                    <span asp-validation-for="SmtpAdress" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="SmtpPort" class="col-md-2 control-label"></label>
+                <div class="col-md-4">
+                    <input asp-for="SmtpPort" class="form-control" />
+                    <span asp-validation-for="SmtpPort" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="SslRequred" class="col-md-2 control-label"></label>
+                <div class="col-md-4">
+                    <input asp-for="SslRequred" />
+                    <span asp-validation-for="SslRequred" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthenticateName" class="col-md-2 control-label"></label>
+                <div class="col-md-4">
+                    <input asp-for="AuthenticateName" class="form-control" />
+                    <span asp-validation-for="AuthenticateName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthenticateLogin" class="col-md-2 control-label"></label>
+                <div class="col-md-4">
+                    <input asp-for="AuthenticateLogin" class="form-control" />
+                    <span asp-validation-for="AuthenticateLogin" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthenticatePassword" class="col-md-2 control-label"></label>
+                <div class="col-md-4">
+                    <input asp-for="AuthenticatePassword" class="form-control" />
+                    <span asp-validation-for="AuthenticatePassword" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enabled" class="col-md-2 control-label"></label>
+                <div class="col-md-4">
+                    <input asp-for="Enabled" />
+                    <span asp-validation-for="Enabled" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-success">Сохранить&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+            <a href="/EmailSmtpServer/Details" class="btn btn-default" style="float:right">Отмена&nbsp;<span class="glyphicon glyphicon-ban-circle"></span></a>
+        </div>
+    </form>
+</div>
+
+@*<h4><a href="/Claim/List">Список требований</a></h4>
+<hr />
+<h3 class="page-header">@ViewData["Title"]</h3>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Основная информация
+        </h3>
+    </div>
+
+    <form asp-controller="ProfileAttribute" asp-action="Edit" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+        <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <input asp-for="Id" type="hidden" class="form-control" />
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RequiredRegister" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="RequiredRegister" />
+                <span asp-validation-for="RequiredRegister" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RequiredAdditional" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="RequiredAdditional" />
+                <span asp-validation-for="RequiredAdditional" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Disabled" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="Disabled" />
+                <span asp-validation-for="Disabled" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Weight" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Deleted" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="Deleted" />
+                <span asp-validation-for="Deleted" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="panel-footer">
+                <button type="submit" class="btn btn-success">Сохранить&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+                <a href="/ProfileAttribute/List/" class="btn btn-default" style="float:right">Отмена&nbsp;<span class="glyphicon glyphicon-ban-circle"></span></a>
+        </div>
+    </form>
+</div>*@

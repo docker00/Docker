@@ -1,0 +1,52 @@
+﻿@model IEnumerable<string>
+
+@{
+    string clientId = ViewBag.ClientId;
+}
+
+<div class="panel panel-default" id="allowedScopes">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a href="#allowedScopes_collapse" data-toggle="collapse"><span class="glyphicon glyphicon-plus" style="float:left;"></span>&nbsp;Возможности</a>
+        </div>
+    </div>
+    <div id="allowedScopes_collapse" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table table-bordered table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;">Название возможности</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count() > 0)
+                        {
+                            foreach (string scope in Model)
+                            {
+                                <tr>
+                                    <td align="center">@scope</td>
+                                    <td align="center">
+                                        <a href="/Client/DeleteScope/?clientId=@clientId&scopeName=@scope" class="glyphicon glyphicon-remove" title="Удалить у клиента"></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="2" align="center">Нет записей</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <a href="/Client/_AddScopePartial/?clientId=@clientId" class="btn btn-default" id="scopeAddBtn"
+                   data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#scopeAddBtn">
+                    Добавить&nbsp;<span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+    </div>
+</div>
+

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AllowedCorsOriginViewModel>
+
+@{
+    string clientId = ViewBag.ClientId;
+}
+
+<div class="panel panel-default" id="allowedCors">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a href="#allowedCors_collapse" data-toggle="collapse"><span class="glyphicon glyphicon-plus" style="float:left;"></span>&nbsp;Доступ к ресурсам другого домена</a>
+        </div>
+    </div>
+    <div id="allowedCors_collapse" class="panel-collapse collapse">
+        <div class="panel-body">
+            <table class="table table-bordered table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">Название ресурса</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() > 0)
+                    {
+                        foreach (AllowedCorsOriginViewModel cor in Model)
+                        {
+                            <tr>
+                                <td align="center">@cor.Name</td>
+                                <td align="center">
+                                    <a href="/Client/DeleteCorOrigin/?clientId=@clientId&allowedCorsOriginId=@cor.Id" class="glyphicon glyphicon-remove" title="Удалить у клиента"></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2" align="center">Нет записей</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <a href="/Client/_AddCorOriginPartial/?clientId=@clientId" class="btn btn-default" id="corAddBtn"
+               data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#corAddBtn">
+                Добавить&nbsp;<span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+    </div>
+</div>

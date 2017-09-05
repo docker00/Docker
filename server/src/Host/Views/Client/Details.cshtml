@@ -1,0 +1,40 @@
+﻿@model ClientViewModel
+@{
+    ViewData["Title"] = "Детальная информация клиента";
+}
+
+<h4>
+    <a href="/Client/List">Список клиентов</a>
+</h4>
+<hr />
+<h3 class="page-header">@ViewData["Title"].</h3>
+
+@if (string.IsNullOrEmpty(Model.ObjectId))
+{
+    <a href="/Object/Add/?clientId=@Model.Id" class="btn btn-warning">Добавить объект&nbsp;<span class="glyphicon glyphicon-plus"></span></a>
+}
+else
+{
+    <a href="/Object/Details/?objectId=@Model.ObjectId">Объект клиента</a>
+}
+
+&nbsp;&nbsp;<a href="/Client/ClientRelationList?clientId=@Model.Id">Взаимодействие с другими клиентами&nbsp;</a>
+<br />
+<br />
+@Html.Partial("_DetailsPartial", Model)
+
+@{
+    ViewDataDictionary clientDictionary = new ViewDataDictionary(this.ViewData) { { "ClientId", Model.Id } };
+}
+@Html.Partial("_ClientIdentityProviderRestrictionListPartial.cshtml", Model.IdentityProviderRestrictions, clientDictionary)
+@Html.Partial("_AllowedCorListPartial", Model.AllowedCorsOrigins, clientDictionary)
+@Html.Partial("_AllowedGrantListPartial", Model.AllowedGrantTypes, clientDictionary)
+@Html.Partial("_AllowedScopeListPartial", Model.AllowedScopes, clientDictionary)
+@Html.Partial("_PostLogoutRedirectUriListPartial", Model.PostLogoutRedirectUris, clientDictionary)
+@Html.Partial("_RedirectUriListPartial", Model.RedirectUris, clientDictionary)
+@Html.Partial("_SecretListPartial", Model.Secrets, clientDictionary)
+
+@section Scripts{
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/project/project_view_scripts.js"></script>
+}

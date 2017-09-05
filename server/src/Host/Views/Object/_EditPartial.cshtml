@@ -1,0 +1,52 @@
+﻿@model ObjectViewModel
+
+@{
+    ViewData["Title"] = "Редактирование объекта";
+}
+
+<div id="objectEdit" class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a href="#objectEdit_collapse" data-toggle="collapse">@ViewData["Title"]<span class="glyphicon glyphicon-plus" style="float:right;"></span></a>
+        </div>
+    </div>
+    <div id="objectEdit_collapse" class="panel-collapse collapse in">
+        <form asp-controller="Object" asp-action="_EditPartial"
+              data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace-with" data-ajax-update="#objectEdit">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <input asp-for="Id" type="hidden" class="form-control" />
+                        <label asp-for="Name" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Url" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Url" class="form-control" />
+                            <span asp-validation-for="Url" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-success">Сохранить&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+                <a href="/Object/_DetailsPartial/?objectId=@Model.Id" class="btn btn-default" style="float:right"
+                   data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#objectEdit">
+                    Отмена&nbsp;<span class="glyphicon glyphicon-ban-circle"></span>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

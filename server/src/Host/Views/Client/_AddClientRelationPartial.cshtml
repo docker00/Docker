@@ -1,0 +1,24 @@
+﻿@model ClientRelationInputModel
+@using MySql.AspNet.Identity;
+
+@{
+    List<ClientCustom> clients = ViewBag.clientCustomView;
+}
+
+<form asp-controller="Client" asp-action="_AddClientRelationPartial" method="post" class="form-inline">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" name="ClientId" value="@ViewBag.clientId" />
+    <input type="hidden" name="FromClientId" value="@ViewBag.clientId" />
+    <select asp-for="ToClientId" class="form-control">
+        @foreach (ClientCustom client in clients)
+        {
+            if (!client.Id.Equals(ViewBag.clientId))
+            {
+                <option value="@client.Id">@client.ClientId</option>
+            }
+        }
+    </select>
+    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span></button>
+    <span asp-validation-for="FromClientId" class="text-danger"></span>
+</form>

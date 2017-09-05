@@ -1,0 +1,81 @@
+﻿@model IEnumerable<GroupViewModel>
+
+<h3 class="page-header">Список групп</h3>
+
+<ul class="nav nav-pills" role="tablist">
+    <li class="active"><a href="#group_tree" role="tab" data-toggle="tab">Дерево групп</a></li>
+    <li><a href="#group_list" role="tab" data-toggle="tab">Список групп</a></li>
+</ul>
+
+<div class="tab-content">
+    <br />
+    <div id="group_tree" class="tab-pane fade in active">
+        <div id="groupList_content" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Дерево
+                </h3>
+            </div>
+            <div class="panel-body">
+                <ul id="0" class="p-has-headers">
+                    @foreach (GroupViewModel group in Model)
+                    {
+                        <li>
+                            @Html.Partial("_DetailsPartial", group)
+                        </li>
+                    }
+                    <li>
+                        <h4 class="header">
+                            <a href="/Group/_AddPartial" class="btn btn-default" name="addBtns">
+                                Добавить группу
+                            </a>
+                        </h4>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="group_list" class="tab-pane fade">
+        <div id="groupList_content" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Полный список
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table id="groupList_data_table"
+                       data-url="/Group/GetData"
+                       data-toggle="table"
+                       data-show-refresh="true"
+                       data-show-toggle="true"
+                       data-method="get"
+                       data-height="500"
+                       data-show-columns="true"
+                       data-pagination="true"
+                       data-side-pagination="server"
+                       data-page-size="10"
+                       data-page-list="[5, 10, 20, 50, 100, 200]"
+                       data-search="true">
+                    <thead>
+                        <tr>
+                            <th data-field="name" data-align="center" data-visible="true" data-sortable="true">
+                                Название
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("_UserSelectModal")
+@Html.Partial("_RoleSelectModal")
+@section Scripts{
+    <link href="~/css/tree.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-table/src/bootstrap-table.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap-table/src/bootstrap-table.js"></script>
+    <script src="~/lib/bootstrap-table/src/locale/bootstrap-table-ru-RU.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/project/group_scripts.js"></script>
+    <script src="~/project/project_view_scripts.js"></script>
+}

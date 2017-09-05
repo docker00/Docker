@@ -1,0 +1,33 @@
+﻿@model IdentityProviderRestriction
+@using MySql.AspNet.Identity;
+@{
+    ViewData["Title"] = "Создание ограничения провайдера";
+}
+
+<h4><a href="/IdentityProviderRestriction/List">Список ограничений провайдера</a></h4>
+<hr />
+<h3 class="page-header">@ViewData["Title"]</h3>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Основная информация
+        </h3>
+    </div>
+
+    <form asp-controller="IdentityProviderRestriction" asp-action="Add" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+        <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label">Название</label>
+            <div class="col-md-4">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-success">Добавить&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+            <a href="/IdentityProviderRestriction/List/" class="btn btn-default" style="float:right">Отмена&nbsp;<span class="glyphicon glyphicon-ban-circle"></span></a>
+        </div>
+    </form>
+</div>

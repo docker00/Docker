@@ -1,0 +1,20 @@
+﻿@model GroupRoleInputModel
+@using MySql.AspNet.Identity;
+@{
+    List<GroupViewModel> groups = ViewBag.Groups;
+}
+
+<form asp-controller="Role" asp-action="_AddGroupPartial" method="post" class="form-inline">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="RoleId" />
+    <select class="form-control" asp-for="GroupId">
+        <option></option>
+        @foreach (GroupViewModel group in groups)
+        {
+            <option value="@group.Id">@group.Name</option>
+        }
+    </select>
+    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span></button>
+    <span asp-validation-for="GroupId" class="text-danger"></span>
+</form>

@@ -1,0 +1,25 @@
+﻿@model IdentityProviderRestriction
+@using MySql.AspNet.Identity;
+@{
+    ViewData["Title"] = "IdentityProviderRestriction delete";
+}
+
+<h2>@ViewData["Title"].</h2>
+
+<form asp-controller="IdentityProviderRestriction" asp-action="Delete" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+    <hr />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <input asp-for="Id" type="hidden" class="form-control" value="@Model.Id" />
+        <input asp-for="Name" type="hidden" class="form-control" value="@Model.Name" />
+        <div class="col-md-10">
+            <p>Удалить роль "@Model.Name"?</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-1 col-md-10">
+            <button type="submit" class="btn btn-danger">Удалить</button>
+            <a href="/IdentityProviderRestriction/List/" class="btn btn-default" role="button">Нет</a>
+        </div>
+    </div>
+</form>

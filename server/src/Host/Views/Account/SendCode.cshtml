@@ -1,0 +1,33 @@
+﻿@model SendCodeViewModel
+@{
+    ViewData["Title"] = "Отправка проверочного кода";
+}
+<h3>@ViewData["Title"].</h3>
+<div class="col-md-6 col-md-offset-2">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Выберите способ аудентифкации</h3>
+        </div>
+        <form asp-controller="Account" asp-action="SendCode" asp-route-returnurl="@Model.ReturnUrl" method="post" class="form-horizontal">
+            <div class="panel-body">
+                <input asp-for="UserId" type="hidden" />
+                <input asp-for="UserName" type="hidden" />
+                <input asp-for="ExternalProvider" type="hidden" />
+                <input asp-for="IdToken" type="hidden" />
+                <input asp-for="ExternalUserId" type="hidden" />
+                <input asp-for="RememberMe" type="hidden" />
+                <input asp-for="SessionId" type="hidden" />
+                <div class="row">
+                    <div class="col-md-8">
+                        <select asp-for="SelectedProvider" asp-items="Model.Providers"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-success">Отправить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

@@ -1,0 +1,17 @@
+﻿@model ClaimCustom
+@using MySql.AspNet.Identity;
+@{
+    ViewData["Title"] = "Детальная информация";
+}
+<a href="/Scope/List">Список claim</a>
+<hr />
+<h3 class="page-header">@ViewData["Title"].</h3>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <label asp-for="Type" class="col-md-2 control-label"></label>
+        <div class="col-md-4">
+            @Model.Type
+        </div>
+    </div>
+</div>

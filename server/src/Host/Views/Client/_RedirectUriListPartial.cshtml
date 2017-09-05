@@ -1,0 +1,53 @@
+﻿@model IEnumerable<RedirectUriViewModel>
+
+@{
+    List<RedirectUriViewModel> redirectUris = ViewBag.RedirectUris;
+    string clientId = ViewBag.ClientId;
+}
+
+<div class="panel panel-default" id="redirectUris">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a href="#redirectUris_collapse" data-toggle="collapse"><span class="glyphicon glyphicon-plus" style="float:left;"></span>&nbsp;Разрешенные URI кодов авторизации</a>
+        </div>
+    </div>
+    <div id="redirectUris_collapse" class="panel-collapse collapse">
+        <div class="panel-body">
+            <table class="table table-bordered table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">URI</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() > 0)
+                    {
+                        foreach (RedirectUriViewModel redirect in Model)
+                        {
+                            <tr>
+                                <td align="center">@redirect.Name</td>
+                                <td align="center">
+                                    <a href="/Client/DeleteRedirectUri/?clientId=@clientId&redirectUriId=@redirect.Id" class="glyphicon glyphicon-remove" title="Удалить у клиента"></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2" align="center">Нет записей</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <a href="/Client/_AddRedirectUriPartial/?clientId=@clientId" class="btn btn-default" id="redirectUri"
+               data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#redirectUri">
+                Добавить&nbsp;<span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+    </div>
+</div>
+

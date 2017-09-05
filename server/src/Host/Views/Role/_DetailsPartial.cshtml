@@ -1,0 +1,23 @@
+﻿@model RoleViewModel
+
+<div id="roleMainInfo" class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a href="/Role/_EditPartial/?roleId=@Model.Id" class="glyphicon glyphicon-edit" style="float:right;"
+               data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#roleMainInfo"></a>
+            <a href="#roleMainInfo_collapse" data-toggle="collapse"><span class="glyphicon glyphicon-plus" style="float:left;"></span>&nbsp;Основная информация</a>
+        </div>
+    </div>
+    <div id="roleMainInfo_collapse" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label asp-for="Name" class="col-md-2 control-label"></label>
+                    <div class="col-md-4">
+                        @Model.Name
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

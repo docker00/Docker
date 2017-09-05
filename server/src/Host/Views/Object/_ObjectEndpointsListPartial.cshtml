@@ -1,0 +1,99 @@
+﻿@model List<ObjectEndpoint>
+@using MySql.AspNet.Identity;
+@{
+    string title = "Конечные точки объекта";
+    string objectId = ViewData["ObjectId"].ToString();
+}
+
+<div class="panel panel-default" id="ObjectEndpoints">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a href="#ObjectEndpoints_collapse" data-toggle="collapse"><span class="glyphicon glyphicon-plus" style="float:left;"></span>&nbsp;Конечные точки</a>
+        </div>
+    </div>
+    <div id="ObjectEndpoints_collapse" class="panel-collapse collapse">
+        <div class="panel-body">
+        
+            <table id="object_endpoint_data_table"
+                   data-url="/Object/ObjectEndpointDataById?objectId=@objectId"
+                   data-toggle="table"
+                   data-show-refresh="true"
+                   data-show-toggle="true"
+                   data-method="get"
+                   data-detail-view="false"
+                   data-show-columns="true"
+                   data-pagination="true"
+                   data-side-pagination="client"
+                   data-page-size="10"
+                   data-page-list="[5, 10, 20, 50, 100, 200]"
+                   data-search="true">
+                <thead>
+                    <tr>
+                        <th data-field="value" data-align="center" data-visible="true" data-sortable="true">
+                            Значение
+                        </th>
+                        <th data-field="ObjectId" data-align="center" data-visible="false" data-sortable="true">
+                            Объект
+                        </th>
+                        <th data-field="actions" data-formatter="objectEndpointFormatter" data-events="objectEndpointEvents" data-align="center" data-visible="true" data-sortable="false">
+                            Действия
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+            
+        </div>
+        <div class="panel-footer">
+            <a href="/Object/_AddEndpointPartial/?objectId=@objectId" class="btn btn-default" id="objectEndpointsAddBtn"
+               data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#objectEndpointsAddBtn">
+                Добавить&nbsp;<span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+@*<h3>@title.</h3>
+
+    <a href="/Object/AddEndpoint?objectId=@objectId" class="btn btn-default" role="button">Добавить конечную точку</a>
+
+    <hr />
+
+
+    <table id="object_endpoint_data_table"
+           data-url="/ObjectEndpoint/DataById?objectId=@objectId"
+           data-toggle="table"
+           data-show-refresh="true"
+           data-show-toggle="true"
+           data-method="get"
+           data-height="500"
+           data-detail-view="false"
+           data-show-columns="true"
+           data-pagination="true"
+           data-side-pagination="client"
+           data-page-size="10"
+           data-page-list="[5, 10, 20, 50, 100, 200]"
+           data-search="true">
+        <thead>
+            <tr>
+                <th data-field="value" data-align="center" data-visible="true" data-sortable="true">
+                    Значение
+                </th>
+                <th data-field="ObjectId" data-align="center" data-visible="false" data-sortable="true">
+                    Объект
+                </th>
+                <th data-field="actions" data-formatter="objectEndpointFormatter" data-events="objectEndpointEvents" data-align="center" data-visible="true" data-sortable="false">
+                    Действия
+                </th>
+            </tr>
+        </thead>
+    </table>
+
+    <a href="/Object/List/" class="btn btn-default" role="button">Список объектов</a>
+
+
+*@
+    @section Scripts{
+        <script src="~/lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
+        <script src="~/lib/bootstrap-table/dist/locale/bootstrap-table-ru-RU.min.js"></script>
+        <link href="~/lib/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet" />
+    }

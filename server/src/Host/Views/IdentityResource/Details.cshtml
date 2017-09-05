@@ -1,0 +1,23 @@
+﻿@model IdentityResourceViewModel
+
+@{
+    ViewData["Title"] = "Детальная информация ресурса";
+}
+
+<h4>
+    <a href="/IdentityResource/List">Список ресурсов</a>
+</h4>
+<hr />
+<h3 class="page-header">
+    @ViewData["Title"]
+</h3>
+@{
+    ViewDataDictionary resourceDictionary = new ViewDataDictionary(this.ViewData) { { "IdentityResourceId", Model.Id } };
+}
+@Html.Partial("_DetailsPartial", Model)
+@Html.Partial("_ClaimListPartial", Model.Claims, resourceDictionary)
+
+@section Scripts{
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/project/project_view_scripts.js"></script>
+}

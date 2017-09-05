@@ -1,0 +1,41 @@
+﻿@model IEnumerable<string>
+@{
+    string userId = ViewBag.UserId;
+}
+
+<div class="panel panel-default" id="resourceClaims">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a href="#resourceClaims_collapse" data-toggle="collapse"><span class="glyphicon glyphicon-plus" style="float:left;"></span>&nbsp;Роли</a>
+        </div>
+    </div>
+    <div id="resourceClaims_collapse" class="panel-collapse collapse">
+        <div class="panel-body">
+            <table class="table table-bordered table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">Состоит в ролях</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() > 0)
+                    {
+                        @foreach (string role in Model)
+                        {
+
+                            <tr>
+                                <td align="center">@role</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2" align="center">Нет записей</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

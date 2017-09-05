@@ -1,0 +1,39 @@
+﻿@model UserViewModel
+
+<h3 class="page-header">
+    Профиль
+</h3>
+
+<ul class="nav nav-pills" role="tablist">
+    <li class="active"><a href="#profile" role="tab" data-toggle="tab">Профиль</a></li>
+    <li><a href="#info" role="tab" data-toggle="tab" onclick="userDetailsInfoClick()">Личная информация</a></li>
+    <li><a href="#apiKeysJoin" role="tab" data-toggle="tab">Ключи API и устройства</a></li>
+</ul>
+
+@{
+    ViewDataDictionary userDictionary = new ViewDataDictionary(this.ViewData) { { "UserId", Model.Id } };
+}
+
+<div class="tab-content">
+    <br />
+    <div id="profile" class="tab-pane fade in active">
+        @Html.Partial("_DetailsPartial", Model)
+        @Html.Partial("_RoleListPartial", Model.Roles, userDictionary)
+        @Html.Partial("_GroupListPartial", Model.Groups, userDictionary)
+    </div>
+    <div id="info" class="tab-pane fade">
+        @Html.ActionLink("Manage", "_ProfileAttributeListPartial", new { userId = Model.Id }, new { @hidden = "hidden", id = "userAttributesLink" })
+    </div>
+    <div id="apiKeysJoin" class="tab-pane fade">
+        @Html.ActionLink("ManageApi", "_ApiKeysJoinPartial", "ManageApi", new { userId = Model.Id }, new { @hidden = "hidden", id = "apiKeysJoinLink" })
+    </div>
+</div>
+
+@section Scripts{
+    <link href="~/lib/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet" />
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
+    <script src="~/lib/bootstrap-table/dist/locale/bootstrap-table-ru-RU.min.js"></script>
+    <script src="~/project/user_scripts.js"></script>
+    <script src="~/project/project_view_scripts.js"></script>
+}

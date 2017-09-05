@@ -1,0 +1,30 @@
+﻿@model ClaimViewModel
+@{
+    ViewData["Title"] = "Добавить требование";
+}
+
+<h4><a href="/Claim/List">Список требований</a></h4>
+<hr />
+<h3 class="page-header">@ViewData["Title"]</h3>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Основная информация
+        </h3>
+    </div>
+    <form asp-controller="Claim" asp-action="Add" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Type" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-success">Добавить&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+            <a href="/Claim/List/" class="btn btn-default" style="float:right">Отмена&nbsp;<span class="glyphicon glyphicon-ban-circle"></span></a>
+        </div>
+    </form>
+</div>

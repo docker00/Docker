@@ -1,0 +1,91 @@
+﻿@model EmailSmtpServerViewModel
+
+@{
+    ViewData["Title"] = "Настройки Smtp сервера";
+}
+
+<h3 class="page-header">
+    @ViewData["Title"]
+</h3>
+
+@if (Model == null)
+{
+    <div class="alert alert-warning">
+        Настройки smtp сервера не указаны. Такие возможности, как подтверждение e-mail, восстановление пароля по e-mail,
+        аудентификация и оповещения не будут доступны. Укажите <a href="/EmailSmtpServer/Add">настройки</a>, если хотите включить
+        указанные возможности.
+    </div>
+}
+else
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Параметры
+                <a role="button" href="/EmailSmtpServer/Edit" class="glyphicon glyphicon-edit" style="float:right;"></a>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label asp-for="SmtpAdress" class="col-md-2 control-label"></label>
+                    <div class="col-md-4">
+                        @Model.SmtpAdress
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SmtpPort" class="col-md-2 control-label"></label>
+                    <div class="col-md-4">
+                        @Model.SmtpPort
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SslRequred" class="col-md-2 control-label"></label>
+                    <div class="col-md-4">
+                         <input asp-for="SslRequred" type="checkbox" disabled="disabled" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AuthenticateName" class="col-md-2 control-label"></label>
+                    <div class="col-md-4">
+                        @Model.AuthenticateName
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AuthenticateLogin" class="col-md-2 control-label"></label>
+                    <div class="col-md-4">
+                        @Model.AuthenticateLogin
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AuthenticatePassword" class="col-md-2 control-label"></label>
+                    <div class="col-md-3">
+                        <input asp-for="AuthenticatePassword" type="password" class="form-control input-sm" value="@Model.AuthenticatePassword" disabled="disabled" />
+                    </div>
+                    <div class="col-md-1"><span class="glyphicon glyphicon-eye-open" style="font-size:1.3em; margin-top:5px; margin-left:-10px"></span></div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Enabled" class="col-md-2 control-label"></label>
+                    <div class="col-md-4">
+                        <input type="checkbox" disabled="disabled" asp-for="Enabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        $('.glyphicon-eye-open').click(function () { 
+            var input_target = $("#AuthenticatePassword");
+            var type = input_target.attr('type');
+            if (type === "password") {
+                input_target.attr('type', 'text')
+            }
+            else {
+                input_target.attr('type', 'password')
+            }
+        });
+    </script>
+}

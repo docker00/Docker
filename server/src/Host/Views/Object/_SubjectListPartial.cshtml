@@ -1,0 +1,213 @@
+﻿@using MySql.AspNet.Identity;
+@{
+    string title = "Список субъектов";
+    List<Role> roles = ViewBag.RolesByObject as List<Role>;
+    List<User> users = ViewBag.UsersByObject as List<User>;
+    List<Group> groups = ViewBag.GroupsByObject as List<Group>;
+    string objectId = ViewData["ObjectId"].ToString();
+    string objectEndpointId = ViewData["ObjectEndpointId"].ToString();
+
+}
+
+
+
+@*<div class="row">
+    <div class="col-md-6 col-sm-6 external-providers">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">@title</h3>
+            </div>*@
+@*<div class="panel-body tree">
+    <ul>
+        <li>
+            <span title="Collapse this branch"><b>Роли</b></span>
+            @if (roles != null && roles.Count > 0)
+            {
+                foreach (Role role in roles)
+                {
+                    <ul>
+                        <li>
+                            <span title="Collapse this branch">@role.Name</span>
+                        </li>
+                    </ul>
+                }
+            }
+            else
+            {
+                <ul>
+                    <li>Список пуст</li>
+                </ul>
+            }
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            <span title="Collapse this branch"><b>Пользователи</b></span>
+            @if (users != null && users.Count > 0)
+            {
+                foreach (User user in users)
+                {
+                    <ul>
+                        <li>
+                            <span title="Collapse this branch">@user.UserName</span>
+                        </li>
+                    </ul>
+                }
+            }
+            else
+            {
+                <ul>
+                    <li>Список пуст</li>
+                </ul>
+            }
+        </li>
+    </ul>*@
+@*<ul class="p-has-headers">
+        <li>
+            <h4 class="header" style="font-size: 11pt">
+                <a href="Gropus" data-toggle="collapse">
+                    <span class="glyphicon glyphicon-plus"></span>Группы
+                </a>
+                <label>
+                    &nbsp;<input type="checkbox" class="objectEndpoint">
+                </label>
+            </h4>
+
+            <ul class="p-has-headers collapse">
+                @if (groups != null && groups.Count > 0)
+                {
+                    foreach (Group group in groups)
+                    {
+                        @*<ul>
+                                <li name="GroupList">
+                                    <span id="@group.Id" title="Collapse this branch" onclick="GetChildren(this)" class="glyphicon glyphicon-plus">@group.Name</span>
+                                    <span title="Collapse this branch">@group.Name</span>
+                                </li>
+                            </ul>
+                        <li>
+                            <h4 class="header" style="font-size: 11pt">
+                                <label><input type="checkbox" value="" name="SelectedPermissions" class="SelectedPermissions"></label>&nbsp;@group.Name
+                            </h4>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <ul>
+                        <li>Список пуст</li>
+                    </ul>
+                }
+            </ul>
+        </li>
+
+    </ul>*@
+@*</div>
+
+    </div>*@
+@*</div>
+    </div>*@
+<ul class="p-has-headers">
+    <li>
+        <h4 class="header" style="font-size: 11pt">
+            <a href="#role" data-toggle="collapse" class="collapsed" aria-expanded="false" style="color:black">
+                <span class="glyphicon glyphicon-plus"></span> Роли
+            </a>
+        </h4>
+
+        <ul class="p-has-headers collapse" id="role" aria-expanded="false">
+            @foreach (Role role in roles)
+            {
+                <li>
+                    <h4 class="header" style="font-size: 11pt">
+                        @role.Name
+                    </h4>
+                </li>
+            }
+        </ul>
+    </li>
+</ul>
+
+<ul class="p-has-headers">
+    <li>
+        <h4 class="header" style="font-size: 11pt">
+            <a href="#users" data-toggle="collapse" class="collapsed" aria-expanded="false" style="color:black">
+                <span class="glyphicon glyphicon-plus"></span> Пользователи
+            </a>
+        </h4>
+
+        <ul class="p-has-headers collapse" id="users" aria-expanded="false">
+            @foreach (User user in users)
+            {
+                <li>
+                    <h4 class="header" style="font-size: 11pt">
+                        @user.UserName
+                    </h4>
+                </li>
+            }
+        </ul>
+    </li>
+</ul>
+
+<ul class="p-has-headers">
+    <li>
+        <h4 class="header" style="font-size: 11pt">
+            <a href="#groups" data-toggle="collapse" class="collapsed" aria-expanded="false" style="color:black">
+                <span class="glyphicon glyphicon-plus"></span> Группы
+            </a>
+        </h4>
+
+        <ul class="p-has-headers collapse" id="groups" aria-expanded="false">
+            @foreach (Group group in groups)
+            {
+                <li>
+                    <h4 class="header" style="font-size: 11pt">
+                        @group.Name
+                    </h4>
+                </li>
+            }
+        </ul>
+    </li>
+</ul>
+
+@*<table id="role_permission_data_table"
+       data-url=""
+       data-toggle="table"
+       data-show-refresh="true"
+       data-show-toggle="true"
+       data-method="get"
+       data-height="500"
+       data-detail-view="true"
+       data-show-columns="true"
+       data-pagination="true"
+       data-side-pagination="client"
+       data-page-size="10"
+       data-page-list="[5, 10, 20, 50, 100, 200]"
+       data-search="true">
+    <thead>
+        <tr>
+            <th data-field="name" data-align="center" data-visible="true" data-sortable="true">
+                Название
+            </th>
+            <th data-field="description" data-align="center" data-visible="true" data-sortable="true">
+                Описание
+            </th>
+            <th data-field="roleId" data-align="center" data-visible="false" data-sortable="false">
+                RoleId
+            </th>
+        </tr>
+    </thead>
+</table>*@
+
+<a href="/Object/_ObjectEndpointsListPartial?objectId=@objectId" class="btn btn-default" role="button"
+   data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#ObjectEndpoints" data-ajax-success="back()">Назад</a>
+
+@*@section Scripts{
+<script src="~/project/project_view_scripts.js"></script>
+    <script src="~/lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="~/lib/bootstrap-table/dist/locale/bootstrap-table-ru-RU.min.js"></script>
+<link href="~/lib/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet" />
+
+    <script src="~/project/object_endpoint_by_id_scripts.js"></script>
+}*@
+

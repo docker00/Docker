@@ -1,0 +1,52 @@
+﻿@model IEnumerable<GroupViewModel>
+
+@{
+    string userId = ViewBag.UserId;
+}
+
+<div class="panel panel-default" id="allowedScopes">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a href="#allowedScopes_collapse" data-toggle="collapse"><span class="glyphicon glyphicon-plus" style="float:left;"></span>&nbsp;Группы</a>
+        </div>
+    </div>
+    <div id="allowedScopes_collapse" class="panel-collapse collapse">
+        <div class="panel-body">
+            <table class="table table-bordered table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">Состоит в группах</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() > 0)
+                    {
+                        foreach (GroupViewModel group in Model)
+                        {
+                            <tr>
+                                <td align="center">@group.Name</td>
+                                <td align="center">
+                                    <a href="/User/DeleteGroup/?userId=@userId&groupId=@group.Id" class="glyphicon glyphicon-remove" title="Удалить у пользователя"></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2" align="center">Нет записей</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <a href="/User/_AddGroupPartial/?userId=@userId" class="btn btn-default" id="groupAddBtn"
+               data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#groupAddBtn">
+                Добавить&nbsp;<span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+    </div>
+</div>
+

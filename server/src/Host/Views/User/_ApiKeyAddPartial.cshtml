@@ -1,0 +1,13 @@
+﻿@model UserApiKeyInputModel
+
+<form asp-controller="User" asp-action="_ApiKeyAddPartial" id="apiKeyAddForm" data-ajax="true" data-ajax-method="POST"
+      data-ajax-mode="replace-with" data-ajax-update="#apiKeyAddForm">
+    <div class="row">
+        <div class="col-md-12">
+            <input type="hidden" asp-for="UserId" />
+            <input type="hidden" asp-for="ClientId" />
+            <input asp-for="ExperienceTime" type="hidden" />
+            <span asp-validation-for="ExperienceTime" class="text-danger"></span>
+        </div>
+    </div>
+</form>

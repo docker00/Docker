@@ -1,0 +1,20 @@
+﻿@model IdentityResourceClaimInputModel
+
+@{
+    List<ClaimViewModel> claims = ViewBag.Claims;
+}
+
+<form action="/IdentityResource/_AddClaimPartial" method="post" class="form-inline">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="IdentityResourceId" />
+    <select class="form-control" asp-for="ClaimId">
+        <option></option>
+        @foreach (ClaimViewModel claim in claims)
+        {
+            <option value="@claim.Id">@claim.Type</option>
+        }
+    </select>
+    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span></button>
+    <span asp-validation-for="ClaimId" class="text-danger"></span>
+</form>

@@ -1,0 +1,13 @@
+﻿@model UserEditModel
+
+<form asp-controller="User" asp-action="_EditPartial"
+      data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace-with" data-ajax-update="#userLoginContent" class="form-inline">
+    <input type="hidden" asp-for="Id" />
+    <input asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+    <a href="/User/_DetailsPartial/?userId=@Model.Id" class="btn btn-default"
+       data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#userLoginContent">
+        <span class="glyphicon glyphicon-ban-circle"></span>
+    </a>
+</form>

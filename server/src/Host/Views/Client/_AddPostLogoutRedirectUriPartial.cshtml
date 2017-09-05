@@ -1,0 +1,11 @@
+﻿@model ClientPostLogoutRedirectUriInputModel
+
+<form asp-controller="Client" asp-action="_AddPostLogoutRedirectUriPartial" method="post" class="form-inline">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ClientId" />
+    <input type="hidden" asp-for="@Model.PostLogoutRedirectUriId" />
+    <input asp-for="@Model.Name" class="form-control" style="width:50%" />
+    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span></button>
+    <span asp-validation-for="PostLogoutRedirectUriId" class="text-danger"></span>
+</form>

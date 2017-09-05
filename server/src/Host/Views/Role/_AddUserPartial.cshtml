@@ -1,0 +1,20 @@
+﻿@model UserRoleInputModel
+@using MySql.AspNet.Identity;
+@{
+    List<UserViewModel> users = ViewBag.Users;
+}
+
+<form action="/Role/_AddUserPartial" method="post" class="form-inline">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="RoleId" />
+    <select class="form-control" asp-for="UserId">
+        <option></option>
+        @foreach (UserViewModel user in users)
+        {
+            <option value="@user.Id">@user.Email</option>
+        }
+    </select>
+    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span></button>
+    <span asp-validation-for="UserId" class="text-danger"></span>
+</form>

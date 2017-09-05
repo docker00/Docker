@@ -1,0 +1,15 @@
+﻿@model GroupViewModel
+@{
+    string guid = Guid.NewGuid().ToString();
+}
+
+<h4 class="header" id="listGroup_group_@guid">
+    <a href="/Group/_ChildrenPartial/?parentId=@Model.Id" name="groupTreeParents"><span class="glyphicon glyphicon-plus"></span>@Model.Name</a>
+    <a href="/Group/_EditPartial/?groupId=@Model.Id&groupParentId=@Model.ParentId" data-ajax="true"
+       data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#listGroup_group_@guid" class="glyphicon glyphicon-pencil"></a>
+    @if (!string.IsNullOrEmpty(Model.ParentId))
+    {
+        <a href="/Group/ChildDelete/?groupId=@Model.Id&parentId=@Model.ParentId" title="Удалить группу из группы" class="glyphicon glyphicon-remove"></a>
+    }
+    <a href="/Group/Delete/?groupId=@Model.Id" title="удалить группу @Model.Name" class="glyphicon glyphicon-trash"></a>
+</h4>

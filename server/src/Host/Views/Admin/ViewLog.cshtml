@@ -1,0 +1,11 @@
+﻿@model List<string>
+
+<input type="button" value="Обновить" onClick="window.location.reload()"><br><br>
+<table>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <tr>
+            <td align="left">@Html.Raw(Model[i])</td>
+        </tr>
+    }
+</table>

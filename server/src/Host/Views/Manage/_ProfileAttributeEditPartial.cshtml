@@ -1,0 +1,14 @@
+﻿@model UserClaimInputModel
+
+<form asp-controlle="Manage" asp-action="_ProfileAttributeEditPartial" id="userProfileAttributeEditForm_@Model.ClaimId" class="form-inline"
+      data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace-with" data-ajax-update="#userProfileAttributeEditForm_@Model.ClaimId">
+    <input asp-for="ClaimId" />
+    <input asp-for="UserId" />
+    <input asp-for="ClaimValue" class="form-control" style="width:50%" />
+    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+    <a href="/Manage/_ProfileAttributeDetailsPartial/?userId=@Model.UserId&claimId=@Model.ClaimId" class="btn btn-default"
+       data-ajax="true" data-ajax-mode="replace-with" data-ajax-update="#userProfileAttributeEditForm_@Model.ClaimId">
+        <span class="glyphicon glyphicon-ban-circle"></span>
+    </a>
+    <span asp-validation-for="ClaimValue" class="text-danger"></span>
+</form>

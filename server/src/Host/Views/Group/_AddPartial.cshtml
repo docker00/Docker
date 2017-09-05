@@ -1,0 +1,25 @@
+﻿@model GroupInputModel
+
+@{ 
+    IEnumerable<GroupViewModel> groups = ViewBag.Groups;
+}
+
+<form asp-controller="Group" asp-action="_AddPartial" class="form-inline" id="groupAdd_@Model.Id" name="addForms"
+      data-ajax="true" data-ajax-mode="replace-with" data-ajax-update="#groupAdd_@Model.Id" data-ajax-method="POST">
+    <h4 class="header">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ParentId" />
+        <input asp-for="Name" class="form-control" list="groupsDataList" />
+        <datalist id="groupsDataList">
+            @foreach (GroupViewModel group in groups)
+            {
+                <option value="@group.Name"></option>
+            }
+        </datalist>
+        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span></button>
+    </h4>
+    <div class="col-md-12">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+</form>

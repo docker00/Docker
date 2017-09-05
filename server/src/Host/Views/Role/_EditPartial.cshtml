@@ -1,0 +1,38 @@
+﻿@model RoleViewModel
+
+@{
+    ViewData["Title"] = "Редактирование ресурса";
+}
+
+<div id="roleEdit" class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a href="#roleEdit_collapse" data-toggle="collapse">@ViewData["Title"]<span class="glyphicon glyphicon-plus" style="float:right;"></span></a>
+        </div>
+    </div>
+    <div id="roleEdit_collapse" class="panel-collapse collapse in">
+        <form asp-controller="role" asp-action="_EditPartial"
+              data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace-with" data-ajax-update="#roleEdit">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input asp-for="Id" type="hidden" class="form-control" />
+                    <div class="form-group">
+                        <label asp-for="Name" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-success">Сохранить&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+                <a href="/Role/_DetailsPartial/?roleId=@Model.Id" class="btn btn-default" style="float:right"
+                   data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#roleEdit">
+                    Отмена&nbsp;<span class="glyphicon glyphicon-ban-circle"></span>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

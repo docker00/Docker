@@ -1,0 +1,44 @@
+﻿@model ClientRelationInputModel
+@using MySql.AspNet.Identity;
+@{
+    ViewData["Title"] = "Добавление взаимодействия с другими клиентами";
+    List<ClientCustom> clients = ViewBag.clientCustomView;
+}
+
+<h3>
+    <a href="/Client/ClientRelationList?clientId=@ViewBag.clientId">Список взаимодействий с другими клиентами</a>
+</h3>
+<hr />
+
+<h3 class="page-header">@ViewData["Title"].</h3>
+<div class="panel panel-default">
+    <form asp-controller="Client" asp-action="AddClientRelation" method="post">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input type="hidden" name="FromClientId" value="@ViewBag.clientId" />
+                <div class="form-group">
+                    <label asp-for="ToClientId" class="col-md-3 control-label"></label>
+                    <div class="col-md-4">
+                        <select asp-for="ToClientId" class="form-control">
+                            @foreach (ClientCustom client in clients)
+                            {
+                                if (!client.Id.Equals(ViewBag.clientId))
+                                {
+                                    <option value="@client.Id">@client.ClientId</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="ToClientId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-success">Добавить&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+            <a href="/Client/ClientRelationList?clientId=@ViewBag.clientId" class="btn btn-default" style="float:right">
+                Отмена&nbsp;<span class="glyphicon glyphicon-ban-circle"></span>
+            </a>
+        </div>
+    </form>
+</div>

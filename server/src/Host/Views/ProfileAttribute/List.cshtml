@@ -1,0 +1,58 @@
+﻿@model List<ProfileAttribute>
+@using MySql.AspNet.Identity;
+@{
+    ViewData["Title"] = "Атрибуты профиля";
+}
+
+<h3 class="page-header">@ViewData["Title"].</h3>
+
+<a href="/ProfileAttribute/Add/" class="btn btn-default" role="button">Добавить атрибут профиля</a>
+
+<table id="profileAttribute_data_table"
+       data-url="/ProfileAttribute/Data"
+       data-toggle="table"
+       data-show-refresh="true"
+       data-show-toggle="true"
+       data-method="get"
+       data-height="500"
+       data-detail-view="false"
+       data-show-columns="true"
+       data-pagination="true"
+       data-side-pagination="client"
+       data-page-size="10"
+       data-page-list="[5, 10, 20, 50, 100, 200]"
+       data-search="true">
+    <thead>
+        <tr>
+            <th data-field="name" data-align="center" data-visible="true" data-sortable="true">
+                Название
+            </th>
+            <th data-field="requiredRegister" data-formatter="profileAttributeCheckboxFormatter" data-align="center" data-visible="true" data-sortable="false">
+                Обязательно при регистрации
+            </th>
+            <th data-field="requiredAdditional" data-formatter="profileAttributeCheckboxFormatter" data-align="center" data-visible="true" data-sortable="false">
+                Обязательно при добавлении
+            </th>
+            <th data-field="disabled" data-formatter="profileAttributeCheckboxFormatter" data-align="center" data-visible="true" data-sortable="false">
+                Заблокировано
+            </th>
+            <th data-field="weight" data-align="center" data-visible="true" data-sortable="true">
+                Размер
+            </th>
+            <th data-field="deleted" data-formatter="profileAttributeCheckboxFormatter" data-align="center" data-visible="true" data-sortable="false">
+                Удалено
+            </th>
+            <th data-field="actions" data-formatter="profileAttributeFormatter" data-events="profileAttributeEvents" data-align="center" data-visible="true" data-sortable="false">
+                Дейсвия
+            </th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <link href="~/lib/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
+    <script src="~/lib/bootstrap-table/dist/locale/bootstrap-table-ru-RU.min.js"></script>
+
+    <script src="~/project/profile_attribute_scripts.js"></script>
+}

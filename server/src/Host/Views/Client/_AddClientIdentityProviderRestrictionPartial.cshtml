@@ -1,0 +1,20 @@
+﻿@model ClientProviderRestrictionInputModel
+
+@{
+    IEnumerable<IdentityProviderRestrictionViewModel> restrictions = ViewBag.Restrictions;
+}
+
+<form asp-controller="Client" asp-action="_AddClientIdentityProviderRestrictionPartial" method="post" class="form-inline">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ClientId" />
+    <select class="form-control" asp-for="IdentityProviderRestrictionId">
+        <option></option>
+        @foreach (IdentityProviderRestrictionViewModel restriction in restrictions)
+            {
+            <option value="@restriction.Id">@restriction.Name</option>
+        }
+    </select>
+    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span></button>
+    <span asp-validation-for="IdentityProviderRestrictionId" class="text-danger"></span>
+</form>

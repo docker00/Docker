@@ -1,0 +1,35 @@
+﻿@model UserViewModel
+
+<div id="userLoginContent" class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a href="#userLoginContent_collapse" data-toggle="collapse"><span class="glyphicon glyphicon-minus" style="float:left;"></span>&nbsp;Основые данные</a>
+        </div>
+    </div>
+    <div id="userLoginContent_collapse" class="panel-collapse collapse in">
+        <div class="panel-body">
+            <table class="table table-hover">
+                <tr>
+                    <td><label asp-for="Email"></label></td>
+                    <td>
+                        @Model.Email
+                    </td>
+                </tr>
+                <tr>
+                    <td><label asp-for="UserName"></label></td>
+                    <td id="userNameDetails">
+                        @Model.UserName
+                        <a class="glyphicon glyphicon-pencil" href="/Manage/_UserNameEditPartial/?userId=@Model.Id"
+                           data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#userNameDetails"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Пароль</td>
+                    <td id="userPasswordContent">
+                        @Html.ActionLink("Изменить пароль", "_PasswordEditPartial", new { userId = Model.Id }, new { @id = "userPasswordEditLink" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

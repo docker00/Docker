@@ -1,0 +1,69 @@
+﻿@model List<ControllerViewModel>
+
+@{
+    string roleId = ViewBag.RoleId;
+}
+
+<h3><a href="/Role/List">Список ролей</a></h3>
+<hr />
+<h3 class="page-header">
+    Список доступных разделов подсистемы
+</h3>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Выбор доступных разделов подсистемы для роли</h3>
+    </div>
+    <form asp-controller="Role" asp-action="RoleLocalPartitionsEdit" method="post">
+        <input type="hidden" name="roleId" value="@roleId" />
+        <div class="panel-body">
+            @if (Model.Count > 0)
+            {
+                <a href="/LocalPartition/List/?roleId=@roleId">Список всех разделов подсистемы</a>
+                foreach (ControllerViewModel controller in Model)
+                {
+                    <h3>
+                        <label>
+                            <input type="checkbox" name="main_checkbox" @(controller.Methods.Where(m => m.Checked).Count() == controller.Methods.Count ? "checked" : string.Empty ) />
+                            @(string.IsNullOrEmpty(controller.Name) ? controller.Controller : controller.Name)
+                        </label>
+                    </h3>
+                    <ul class="p-has-headers">
+                        @foreach (MethodViewModel method in controller.Methods)
+                        {
+                            <li>
+                                <div class="checkbox">
+                                    <h3 class="header">
+                                        <label>
+                                            <input type="checkbox" name="localPartitionsIds" @(method.Checked ? "checked" : string.Empty ) value="@method.Id" />&nbsp;
+                                            @(string.IsNullOrEmpty(method.Name) ? method.Method : method.Name)
+                                        </label>
+                                    </h3>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    Список доступных подразделов системы пуст. Нужно выбрать отображаемые разделы в
+                    <a href="/LocalPartition/List/?roleId=@roleId">списке все разделов подсистемы</a>
+                </div>
+            }
+        </div>
+        @if (Model.Count > 0)
+        {
+            <div class="panel-footer">
+
+                <button type="submit" class="btn btn-success">Сохранить&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+            </div>
+        }
+    </form>
+</div>
+
+@section Scripts{
+    <link href="~/css/tree.css" rel="stylesheet" />
+    <script src="~/project/local_partition_scripts.js"></script>
+}

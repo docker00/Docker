@@ -1,0 +1,20 @@
+﻿@model ClientAllowedGrantTypeInputModel
+
+@{
+    List<AllowedGrantTypeViewModel> grants = ViewBag.GrantTypes;
+}
+
+<form asp-controller="Client" asp-action="_AddGrantTypePartial" method="post" class="form-inline">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ClientId" />
+    <select class="form-control" asp-for="AllowedGrantTypeId">
+        <option></option>
+        @foreach (AllowedGrantTypeViewModel grant in grants)
+        {
+            <option value="@grant.Id">@grant.Name</option>
+        }
+    </select>
+    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span></button>
+    <span asp-validation-for="AllowedGrantTypeId" class="text-danger"></span>
+</form>

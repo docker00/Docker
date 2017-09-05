@@ -1,0 +1,53 @@
+﻿@model List<ObjectEndpoint>
+@using MySql.AspNet.Identity;
+@{
+    string title = "Конечные точки объекта";
+    string objectId = ViewData["ObjectId"].ToString();
+}
+
+<h3>@title.</h3>
+
+<a href="/Object/AddEndpoint?objectId=@objectId" class="btn btn-default" role="button">Добавить конечную точку</a>
+
+<hr />
+
+
+<table id="object_endpoint_data_table"
+       data-url="/ObjectEndpoint/DataById?objectId=@objectId"
+       data-toggle="table"
+       data-show-refresh="true"
+       data-show-toggle="true"
+       data-method="get"
+       data-height="500"
+       data-detail-view="false"
+       data-show-columns="true"
+       data-pagination="true"
+       data-side-pagination="client"
+       data-page-size="10"
+       data-page-list="[5, 10, 20, 50, 100, 200]"
+       data-search="true">
+    <thead>
+        <tr>
+            <th data-field="value" data-align="center" data-visible="true" data-sortable="true">
+                Значение
+            </th>
+            <th data-field="ObjectId" data-align="center" data-visible="false" data-sortable="true">
+                Объект
+            </th>
+            <th data-field="actions" data-formatter="objectEndpointFormatter" data-events="objectEndpointEvents" data-align="center" data-visible="true" data-sortable="false">
+                Действия
+            </th>
+        </tr>
+    </thead>
+</table>
+
+<a href="/Object/List/" class="btn btn-default" role="button">Список объектов</a>
+
+
+
+@section Scripts{
+    <script src="~/lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
+    <script src="~/lib/bootstrap-table/dist/locale/bootstrap-table-ru-RU.min.js"></script>
+    <link href="~/lib/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet" />
+    <script src="~/project/object_endpoint_by_id_scripts.js"></script>
+}

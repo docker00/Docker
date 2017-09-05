@@ -1,0 +1,59 @@
+﻿/* Reset
+--------------------------- */
+.panel-body  UL {
+    margin: 0;
+    padding: 0;
+}
+
+.panel-body LI {
+    list-style: none;
+}
+
+/* Common
+--------------------------- */
+
+.panel-body UL {
+    overflow: hidden;
+}
+
+.panel-body LI,
+.panel-body .header {
+    position: relative;
+    padding-left: 1.2em;
+}
+
+    .header + Ul {
+        margin-left: 30px;
+        padding-top: 10px;
+    }
+
+.panel-body LI {
+    margin-bottom: .8em;
+}
+
+    .panel-body LI:before,
+    .panel-body .header:before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: .5em;
+        width: 15px;
+        height: 0;
+        border-bottom: 1px solid #333;
+    }
+
+    .panel-body LI:last-child:before,
+    .header:last-of-type:before {
+        height: 1000px;
+        border: 1px solid #333;
+        border-width: 0 0 1px 1px
+    }
+
+.panel-body .p-has-headers > LI {
+    margin: 10px 0
+}
+
+    .panel-body .p-has-headers > LI:before {
+        content: none;
+    }
