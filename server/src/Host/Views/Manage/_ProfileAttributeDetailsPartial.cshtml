@@ -1,8 +1,0 @@
-﻿@model UserClaimViewModel
-<div class="form-inline" id="profileAttributeEditLink_@Model.ClaimId">
-    <a href="/Manage/_ProfileAttributeEditPartial/?userId=@Model.UserId&claimId=@Model.ClaimId"
-       class="form-control" style="width:50%"
-       data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace-with" data-ajax-update="#profileAttributeEditLink_@Model.ClaimId">
-        @Model.ClaimValue
-    </a>
-</div>
