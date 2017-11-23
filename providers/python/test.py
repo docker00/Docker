@@ -8,9 +8,12 @@ import json
 from flask_oidc import OpenIDConnect
 #from flask.ext.oidc import OpenIDConnect
 
+from flask_cors import CORS
+
 #logging.basicConfig()
 
 app = flask.Flask(__name__)
+CORS(app)
 
 app.config.update({
     'SECRET_KEY': 'secret',
@@ -19,7 +22,7 @@ app.config.update({
     'OIDC_CLIENT_SECRETS': 'client_secrets.json',
     'OIDC_ID_TOKEN_COOKIE_SECURE': False,
     'OIDC_REQUIRE_VERIFIED_EMAIL': False,
-    'OIDC_VALID_ISSUERS': 'http://192.168.0.212:5000',
+    'OIDC_VALID_ISSUERS': ['http://localhost:5000','http://rum-zakharov.scanex.ru:5000'],
     'OIDC_SCOPES': 'openid email profile',
     #'OVERWRITE_REDIRECT_URI': 'http://192.168.0.212:8080/python/oidc_callback'
 })
@@ -69,8 +72,9 @@ def affected_num_to_code(cnt):
 
 
 @app.route('/')
-@oidc.require_login
+#@oidc.require_login
 def root():
+    #return resp(200, {"theme_id": "theme_id"})
     return flask.redirect('/api/1.0/themes')
 
 # e.g. failed to parse json
@@ -92,9 +96,14 @@ def page_not_found(e):
 @app.route('/api/1.0/themes', methods=['GET'])
 @oidc.require_login
 def get_themes():
-    themes = []
+    themes = [1,2,3,4,5]
     return resp(200, {"themes": themes})
 
+@app.route('/api/1.0/themes2', methods=['GET'])
+@oidc.accept_token(True, ['openid'])
+def get_themes2():
+    themes = [1,2,3,4,5]
+    return resp(200, {"themes": themes})
 
 @app.route('/api/1.0/themes', methods=['POST'])
 @oidc.require_login
