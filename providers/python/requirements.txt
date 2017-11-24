@@ -1,5 +1,4 @@
 flask
-flask_oidc
 flask_cors
 requests
 
