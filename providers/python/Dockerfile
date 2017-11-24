@@ -7,11 +7,15 @@ LABEL \
     description="Python Demo Application" \
     source="https://github.com/ScanEx/"
 
+#
 # Setting proxy
+#
 #ENV http_proxy='http://192.168.4.10:8080' \
 #    https_proxy='https://192.168.4.10:8080'
 
+#
 # Copy the current directory contents into the container at /app
+#
 COPY ./assets/src /app
 
 RUN set -ex \
@@ -47,11 +51,17 @@ RUN set -ex \
       /usr/share/doc \
       /usr/share/doc-base
 
-# Make port 5001 available to the world outside this container
+#
+# Make port available to the world outside that container
+#
 EXPOSE 80
 
+#
 # Set the working directory to /app
+#
 WORKDIR /app
 
-# Run app.py when the container launches
+#
+# Run the application after launching the container
+#
 CMD ["python", "test.py"]
