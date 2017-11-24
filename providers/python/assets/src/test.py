@@ -17,18 +17,9 @@ app.config.update({
     'OIDC_CLIENT_SECRETS': 'client_secrets.json',
     'OIDC_ID_TOKEN_COOKIE_SECURE': False,
     'OIDC_REQUIRE_VERIFIED_EMAIL': False,
-<<<<<<< HEAD
 })
 
 oidc = OpenIDConnect(app)
-
-=======
-    'OIDC_VALID_ISSUERS': ['https://iam.maritime.tools'],
-    'OIDC_SCOPES': 'openid email profile',
-})
-
-oidc = OpenIDConnect(app)
->>>>>>> Подготовка к показу
 
 def to_json(data):
     return json.dumps(data) + "\n"
@@ -160,9 +151,5 @@ def delete_theme(theme_id):
 
 if __name__ == '__main__':
     app.debug = True  # enables auto reload during development
-<<<<<<< HEAD
     app.run(host='0.0.0.0', port=80)
-=======
-    app.run(host='0.0.0.0', port=8080)
->>>>>>> Подготовка к показу
 

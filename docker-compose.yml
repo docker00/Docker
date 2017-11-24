@@ -1,0 +1,8 @@
+version: '2'
+services:
+  python:
+    build: providers/python
+    container_name: python
+    restart: always
+    ports:
+      - "80:80"
