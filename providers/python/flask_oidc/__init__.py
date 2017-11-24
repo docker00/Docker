@@ -407,8 +407,8 @@ class OpenIDConnect(object):
 
         try:
             domain = request.environ['HTTP_HOST']
-            sub = g.oidc_id_token['sub'];
-            uri = request.url_rule#session['REQUEST_URI']
+            sub = g.oidc_id_token['sub']
+            uri = request.environ['PATH_INFO']#request.url_rule#
             scheme = request.scheme
             method = request.method
             from_ = request.environ.get('HTTP_X_DATA_FROM',g.oidc_id_token['aud'])

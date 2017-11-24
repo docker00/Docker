@@ -16,22 +16,15 @@ app = flask.Flask(__name__)
 CORS(app)
 
 app.config.update({
-    'SECRET_KEY': 'secret',
+    'SECRET_KEY': 'flask_secret_key',
     'TESTING': True,
     'DEBUG': True,
     'OIDC_CLIENT_SECRETS': 'client_secrets.json',
     'OIDC_ID_TOKEN_COOKIE_SECURE': False,
     'OIDC_REQUIRE_VERIFIED_EMAIL': False,
-    'OIDC_VALID_ISSUERS': ['http://localhost:5000','http://rum-zakharov.scanex.ru:5000'],
-    'OIDC_SCOPES': 'openid email profile',
-    #'OVERWRITE_REDIRECT_URI': 'http://192.168.0.212:8080/python/oidc_callback'
 })
 
 oidc = OpenIDConnect(app)
-#OP = discovery.discover_OP_information("http://192.168.0.212:5000/.well-known/openid-configuration")
-
-# disables JSON pretty-printing in flask.jsonify
-# app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
 
 def to_json(data):
@@ -98,6 +91,17 @@ def page_not_found(e):
 def get_themes():
     themes = [1,2,3,4,5]
     return resp(200, {"themes": themes})
+
+
+@app.route('/api/1.0/theme/<int:id>', methods=['GET'])
+@oidc.require_login
+def get_theme(id):
+    themes = [1,2,3,4,5]
+    if (-len(themes)<=id and id<len(themes)):
+        return resp(200, {"theme": themes[id]})
+    else:
+        return resp(200, {"theme": None})
+
 
 @app.route('/api/1.0/themes2', methods=['GET'])
 @oidc.accept_token(True, ['openid'])
