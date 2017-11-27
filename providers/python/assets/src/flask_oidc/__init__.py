@@ -46,6 +46,7 @@ from itsdangerous import JSONWebSignatureSerializer, BadSignature, \
 __all__ = ['OpenIDConnect', 'MemoryCredentials']
 
 logger = logging.getLogger(__name__)
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 
 def _json_loads(content):
